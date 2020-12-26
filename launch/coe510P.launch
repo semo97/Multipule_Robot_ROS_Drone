@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+  <param name="/use_sim_time" value="true" />
+
+  <!-- start world -->
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/empty.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- include our robots -->
+  <include file="$(find autonomous_robots)/launch/robots.launch"/>
+  
+   <node pkg="autonomous_robots" type="go_to_Goal_serverRobot1.py" name="go_to_Goal_serverRobot1" output="screen"/>
+   <node pkg="autonomous_robots" type="go_to_Goal_serverRobot2.py" name="go_to_Goal_serverRobot2" output="screen"/>
+   <node pkg="autonomous_robots" type="go_to_Goal_serverRobot3.py" name="go_to_Goal_serverRobot3" output="screen"/>
+   <node pkg="autonomous_robots" type="sweepDroneImg.py" name="sweepDrone" output="screen"/>
+   <node pkg="autonomous_robots" type="send_location_client_img.py" name="send_location_client_img" output="screen"/>
+   <node pkg="autonomous_robots" type="readCamera.py" name="readCamera" output="screen"/>   
+   <node pkg="rqt_graph" type="rqt_graph" name="rqt_graph" output="screen"/>
+
+
+</launch>

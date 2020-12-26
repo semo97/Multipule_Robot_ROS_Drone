@@ -1,0 +1,9 @@
+#goal definition
+float32 x
+float32 y
+---
+#result definition
+string[] result
+---
+#feedback
+string[] feedback
